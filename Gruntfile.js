@@ -145,7 +145,8 @@ module.exports = function (grunt) {
           debug: true,
           livereload: project.server.livereload,
           port: '<%= process.env.PORT || project.server.port %>',
-          server: path.resolve('<%= project.path.server %>')
+          server: path.resolve('<%= project.path.server %>'),
+          script: path.resolve('<%= project.path.server %>/index.js') // added by poovarasan
         }
       }
     },
@@ -207,20 +208,6 @@ module.exports = function (grunt) {
         'Gruntfile.js'
       ]
     },
-    karma: {  // grunt-karma
-      single: {
-        configFile: '<%= project.path.config %>/test/karma-unit.conf.js',
-        singleRun: true
-      },
-      multi: {
-        configFile: '<%= project.path.config %>/test/karma-unit.conf.js',
-        singleRun: false
-      },
-      e2e: {
-        configFile: '<%= project.path.config %>/test/karma-e2e.conf.js',
-        singleRun: true
-      }
-    },
     less: {  // grunt-contrib-less
       dev: {
         options: {
@@ -247,15 +234,6 @@ module.exports = function (grunt) {
     open: {  // grunt-open
       dev: {
         url: 'http://localhost:<%= process.env.PORT || project.server.port %>'
-      }
-    },
-    protractor: {  // grunt-protractor-runner
-      options: {
-        keepAlive: true,
-        noColor: false
-      },
-      e2e: {
-        configFile: '<%= project.path.config %>/test/protractor-e2e.conf.js',
       }
     },
     uglify: {  // grunt-contrib-uglify
@@ -439,9 +417,7 @@ module.exports = function (grunt) {
 
   grunt.registerTask('build', 'buildDist');
   grunt.registerTask('test', [
-    'jshint',
-    'protractor'
-    // 'karma:multi'
+    'jshint'
   ]);
 
   // Shortcuts
