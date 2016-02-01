@@ -38,4 +38,4 @@ function task(req, res, next) {
 exports.index = index;
 exports.express = express;
 exports.page = page;
-exports.task = task;
+//exports.task = task;

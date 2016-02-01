@@ -14,7 +14,7 @@ var config = ultimate.config(__dirname + '/../config');
 
 // Create an app
 var app = {
-  bbq: require('../worker').bbq,
+ // bbq: require('../worker').bbq,
   config: config,
   dir: __dirname,
   project: require('../project'),
@@ -90,6 +90,8 @@ app.attachREPLContext = function (context) {
 
 // Run app.servers
 app.run = function () {
+
+  console.log('started');
   // Connect to DB
   ultimate.db.mongoose.connect(app.config.db.mongo);
   //ultimate.db.redis.connect(app.config.db.redis);

@@ -20,7 +20,6 @@ var project = require('./project');
 module.exports = function (grunt) {
   // load all grunt tasks
   require('matchdep').filterDev('grunt-*').forEach(grunt.loadNpmTasks);
-  grunt.loadNpmTasks('intern');
 
   // Project configuration.
   grunt.initConfig({
@@ -172,25 +171,6 @@ module.exports = function (grunt) {
         }]
       }
     },
-    intern: {  // intern
-      client: {
-        options: {
-          config: 'test/intern'
-        }
-      },
-      clientSuiteGet: {
-        options: {
-          config: 'test/intern',
-          suites: ['test/lib/get']
-        }
-      },
-      runner: {
-        options: {
-          config: 'test/intern',
-          runType: 'runner'
-        }
-      }
-    },
     jshint: {  // grunt-contrib-jshint
       options: {
         jshintrc: '.jshintrc'
@@ -273,6 +253,8 @@ module.exports = function (grunt) {
           '<%= project.path.client %>/fonts/{,*/}*',
           '<%= project.path.client %>/img/**/*.{gif,jpg,png}',
           '<%= project.path.server %>/views/**/*.hbs',
+          '<%= project.path.server %>/*.js',
+          '<%= project.path.server %>/{controllers,lib,models,sockets,views}/**/*.js',
           '<%= project.path.static %>/**/*',
           '<%= project.path.temp %>/*.html',
           '<%= project.path.temp %>/css/{,*/}*.css',
